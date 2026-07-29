@@ -1,0 +1,8 @@
+{
+  "relationship": {
+    "from": "Usuario",
+    "to": "Producto",
+    "type": "one-to-many",
+    "description": "Un usuario administrador puede crear y gestionar varios productos. Cada producto pertenece a un único usuario administrador."
+  }
+}

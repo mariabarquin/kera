@@ -1,0 +1,29 @@
+[
+    {
+        "nombre": "Lucia",
+        "apellidos": "Garcia",
+        "email": "luciagarcia@hotmail.com",
+        "passwordHash": "12345",
+        "telefono": "60012345",
+        "direccion": "Calle Mayor 12, Madrid",
+        "fechaRegistro": "2025-06-24"
+    },
+    {
+        "nombre": "David",
+        "apellidos": "Gomez",
+        "email": "davidgomez@gmail.com",
+        "passwordHash": "54321",
+        "telefono": "603234587",
+        "direccion": "Calle Menor 6, Madrid",
+        "fechaRegistro": "2025-08-30"
+    },
+     {
+        "nombre": "Julia",
+        "apellidos": "Arroyo",
+        "email": "juliarroyo@gmail.com",
+        "passwordHash": "13245",
+        "telefono": "654125623",
+        "direccion": "Calle del Medio 2, Madrid",
+        "fechaRegistro": "2026-01-14"
+    }
+]

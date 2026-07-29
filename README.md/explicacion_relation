@@ -1,0 +1,1 @@
+La relación es de uno a muchos. El user admin puede gestionar varios productos. En una implementación completa, cada producto almacenaría el ObjectId del admin mediante el campo creadoPor, pero para estos datos (de prueba) no los he implementado.

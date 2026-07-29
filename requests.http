@@ -1,0 +1,48 @@
+### Variables
+@baseUrl = http://localhost:3000
+
+### 1. Obtener todos los productos (GET)
+GET {{baseUrl}}/api/products
+
+###
+
+### 2. Crear un nuevo producto (POST)
+POST {{baseUrl}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Teclado Mecánico RGB",
+  "description": "Teclado gaming con switches rojos",
+  "price": 59.99,
+  "category": "Periféricos",
+  "stock": 15
+}
+
+###
+
+### 3. Obtener un producto por ID (GET)
+# Sustituye el ID del final por un _id real obtenido de la petición anterior
+GET {{baseUrl}}/api/products/6a69c4d25379cad1fcc139a4
+
+###
+
+### 4. Actualizar un producto existente (PUT)
+# Sustituye el ID del final por un _id real
+PUT {{baseUrl}}/api/products/6a69c4d25379cad1fcc139a4
+Content-Type: application/json
+
+{
+  "price": 49.99,
+  "stock": 20
+}
+
+###
+
+### 5. Eliminar un producto (DELETE)
+# Sustituye el ID del final por un _id real
+DELETE {{baseUrl}}/api/products/66a0123456789abcdef01234
+
+###
+
+### 6. Probar ruta inexistente (Prueba Middleware 404)
+GET {{baseUrl}}/api/ruta-que-no-existe

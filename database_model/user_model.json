@@ -1,0 +1,46 @@
+{
+  "entity": "Usuario",
+  "description": "Representa a los usuarios registrados de la aplicación.",
+  "fields": [
+    {
+      "name": "id",
+      "type": "ObjectId",
+      "required": true
+    },
+    {
+      "name": "nombre",
+      "type": "String",
+      "required": true
+    },
+    {
+      "name": "apellidos",
+      "type": "String",
+      "required": true
+    },
+    {
+      "name": "email",
+      "type": "String",
+      "required": true
+    },
+    {
+      "name": "passwordHash",
+      "type": "String",
+      "required": true
+    },
+    {
+      "name": "telefono",
+      "type": "String",
+      "required": false
+    },
+    {
+      "name": "direccion",
+      "type": "String",
+      "required": false
+    },
+    {
+      "name": "fechaRegistro",
+      "type": "date",
+      "required": true
+    }
+  ]
+}

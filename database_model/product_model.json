@@ -1,0 +1,56 @@
+{
+  "entity": "Producto",
+  "description": "Productos comercializados por la marca Kera.",
+  "fields": [
+    {
+      "name": "id",
+      "type": "ObjectId",
+      "required": true
+    },
+    {
+      "name": "nombre",
+      "type": "String",
+      "required": true
+    },
+    {
+      "name": "categoria",
+      "type": "String",
+      "required": true
+    },
+    {
+      "name": "descripcion",
+      "type": "String",
+      "required": true
+    },
+    {
+      "name": "ingredientes",
+      "type": "String",
+      "required": true
+    },
+    {
+      "name": "precio",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "stock",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "imagen",
+      "type": "image",
+      "required": true
+    },
+    {
+      "name": "estado",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "name": "fechaCreacion",
+      "type": "date",
+      "required": true
+    }
+  ]
+}

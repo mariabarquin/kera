@@ -1,0 +1,29 @@
+[
+  {
+    "nombre": "Sérum facial nutritivo",
+    "categoria": "Cosmética",
+    "descripcion": "Sérum elaborado con aceites vegetales.",
+    "ingredientes": [
+      "Aceite de jojoba",
+      "Vitamina E",
+      "Extracto de manzanilla"
+    ],
+    "precio": 42,
+    "stock": 25,
+    "imagen": "/images/serum.jpg",
+    "estado": true
+  },
+  {
+    "nombre": "Vela aromática Bosque",
+    "categoria": "Velas",
+    "descripcion": "Vela artesanal con aroma a cedro y pino.",
+    "ingredientes": [
+      "Cera de soja",
+      "Aceites esenciales"
+    ],
+    "precio": 28,
+    "stock": 12,
+    "imagen": "/images/vela.jpg",
+    "estado": true
+  }
+]
