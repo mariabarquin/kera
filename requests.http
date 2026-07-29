@@ -11,11 +11,11 @@ POST {{baseUrl}}/api/products
 Content-Type: application/json
 
 {
-  "name": "Teclado Mecánico RGB",
-  "description": "Teclado gaming con switches rojos",
-  "price": 59.99,
-  "category": "Periféricos",
-  "stock": 15
+  "name": "Aceite Corporal de Lavanda y Almendras",
+  "description": "Aceite nutritivo e hidratante para relajar la piel y los sentidos tras la ducha.",
+  "price": 24.50,
+  "category": "Aceites y Lociones",
+  "stock": 35
 }
 
 ###
