@@ -1,5 +1,5 @@
 ### Variables
-@baseUrl = http://localhost:3000
+@baseUrl = https://kera-seven.vercel.app
 
 ### 1. Obtener todos los productos (GET)
 GET {{baseUrl}}/api/products
