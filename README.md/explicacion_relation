@@ -1,1 +1,49 @@
 La relación es de uno a muchos. El user admin puede gestionar varios productos. En una implementación completa, cada producto almacenaría el ObjectId del admin mediante el campo creadoPor, pero para estos datos (de prueba) no los he implementado.
+
+29/07/2026
+KERA API RESTful 
+
+API RESTful desarrollada con Node.js, Express y MongoDB Atlas, desplegada en Vercel.
+
+Descripción del Proyecto
+Este proyecto es el backend para la gestión de productos y usuarios de KERA. Permite realizar operaciones CRUD completas y gestionar la conexión a una base de datos en la nube.
+
+---
+
+Diagrama de Estructura y Flujo (Mermaid)
+
+```mermaid
+graph TD
+    Client[Cliente / REST Client / Postman] -->|Petición HTTP| Vercel[Vercel Serverless Function]
+    Vercel -->|Ruta /api/products| Express[Express App]
+    Express -->|Middlewares| Middlewares[Error & JSON Handler]
+    Express -->|Controladores| Controller[Product Controller]
+    Controller -->|Mongoose Schema| Model[Product Model]
+    Model -->|Consulta / Guardado| MongoDB[(MongoDB Atlas Cloud)]
+
+
+    Modelos Creados:
+        Product
+            name (string, requerido)
+            description (string)
+            price (number, requerido)
+            category (string, requerido)
+            stock (number, defecto 0)
+            createdAt / updatedAt (timestamps automáticos)
+        User
+            name (string, requerido)
+            email (string, requerido, único)
+            password (string, requerido)
+            createdAt / updatedAt (timestamps automáticos)
+
+---
+
+Endpoints de la API
+GET -> / -> Ruta de bienvenida / Comprobación de estado
+GET -> /api/products -> Obtener todos los productos
+GET -> /api/products/:id -> Obtener un nuevo producto por ID
+POST -> /api/products -> Crear un nuevo producto
+PUT -> /api/products/:id -> Actualizar un producto existente
+DELETE -> /api/products/:id -> Eliminar un producto
+
+
