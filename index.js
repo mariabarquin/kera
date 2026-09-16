@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./src/config/db');
+const cors = require('cors');
 
 // OJO AQUÍ: Asegúrate de que el nombre del archivo dentro de /src/routes sea exacto
 // Si tu archivo se llama productRoutes.js usa './src/routes/productRoutes'
@@ -10,6 +11,7 @@ const productRoutes = require('./src/routes/productRoutes');
 const { notFound, errorHandler } = require('./src/middlewares/errorMiddleware');
 
 const app = express();
+app.use(cors());
 
 // Conectar a MongoDB Atlas
 connectDB();
