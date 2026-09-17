@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProducts, createProduct } from "../services/api";
+import ProductList from "../components/ProductList";
+import ProductForm from "../components/ProductForm";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -74,63 +76,13 @@ function Home() {
     <main>
       <h1>Kera</h1>
 
-      <h2>Añadir producto</h2>
+    <ProductForm
+      form={form}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+    />
 
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          value={form.name}
-          onChange={handleChange}
-        />
-
-         <input 
-          type="text"
-          name="description"
-          placeholder="Descripción"
-          value={form.description}
-          onChange={handleChange} 
-        />
-
-          <input 
-            type="number"
-            name="price"
-            placeholder="Precio"
-            value={form.price}
-            onChange={handleChange}
-         />
-
-          <input 
-            type="text"
-            name="category"
-            placeholder="Categoría"
-            value={form.category}
-            onChange={handleChange}
-          />
-
-          <input 
-            type="number"
-            name="stock"
-            placeholder="Stock"
-            value={form.stock}
-            onChange={handleChange}
-          />
-
-          <button type="submit">Añadir producto</button>
-      </form>
-
-      <h2>Productos</h2>
-
-      {products.map((product) => (
-        <article key={product._id}>
-          <h3>{product.name}</h3>
-          <p>{product.description}</p>
-          <p>{product.category}</p>
-          <p>{product.price} €</p>
-          <p>Stock: {product.stock}</p>
-        </article>
-      ))}
+      <ProductList products={products} />
     </main>
   );
 }
