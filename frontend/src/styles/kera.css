@@ -1,0 +1,169 @@
+/* HEADER */
+.header {
+  background-color: #1E1D1D;
+  color: #FDFAF5;
+  padding: 18px 40px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  width: 33.33%;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav a {
+  color: #FDFAF5;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px !important;
+  font-weight: 600;
+  letter-spacing: 0.12em !important;
+}
+
+/* HERO */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 40px;
+  background-color: #FDFAF5;
+}
+
+.hero-content {
+  max-width: 700px;
+}
+
+.hero-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 7vw, 92px);
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin: 0 0 30px;
+}
+
+.hero-text {
+  max-width: 480px;
+  margin: 0 auto 40px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 14px 24px;
+  border: 1px solid #1E1D1D;
+  color: #1E1D1D;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #1E1D1D;
+  color: #FDFAF5;
+}
+
+/* PRODUCTS */
+.products-section {
+  padding: 120px 40px;
+  background-color: #FDFAF5;
+}
+
+.section-heading {
+  margin-bottom: 60px;
+}
+
+.section-heading p {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  margin-bottom: 15px;
+}
+
+.section-heading h2 {
+  font-size: 42px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.product-card {
+  min-width: 0;
+}
+
+.product-image {
+  aspect-ratio: 3 / 4;
+  background-color: #E8E4DC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-image span {
+  font-size: 18px;
+  letter-spacing: 0.15em;
+}
+
+.product-info h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0 0 8px;
+}
+
+.product-info p {
+  margin: 4px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.product-category {
+  text-transform: uppercase;
+  font-size: 10px !important;
+  letter-spacing: 0.1em;
+  margin-top: 15px !important;
+}
+
+.product-price {
+  margin-top: 10px !important;
+}

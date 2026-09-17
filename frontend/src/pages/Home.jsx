@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { getProducts, createProduct } from "../services/api";
 import ProductList from "../components/ProductList";
 import ProductForm from "../components/ProductForm";
+import "../styles/kera.css";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -14,6 +17,7 @@ function Home() {
     price: "",
     category: "",
     stock: "",
+    image: "",
   });
 
   function handleChange(event) {
@@ -43,6 +47,7 @@ function Home() {
         price: "",
         category: "",
         stock: "",
+        image: "",
       });
     } catch (error) {
       setError("No se ha podido crear el producto");
@@ -73,17 +78,23 @@ function Home() {
   }
 
   return (
-    <main>
-      <h1>Kera</h1>
+    <>
+      <Header />
 
-    <ProductForm
-      form={form}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-    />
+      <Hero />
+
+      <main>
+        <h1>Kera</h1>
+
+      <ProductForm
+        form={form}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
 
       <ProductList products={products} />
-    </main>
+      </main>
+    </>
   );
 }
 

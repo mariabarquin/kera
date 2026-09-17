@@ -39,6 +39,13 @@ function ProductForm({ form, handleChange, handleSubmit }) {
                  value={form.stock}
                  onChange={handleChange}
                 />
+                <input
+                 type="text" 
+                 name="image"
+                 placeholder="URL de la imagen"
+                 value={form.image}
+                 onChange={handleChange}
+                />
 
                 <button type="submit">Añadir producto</button>
             </form>

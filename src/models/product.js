@@ -23,7 +23,11 @@ const productSchema = new mongoose.Schema(
     stock: {
       type: Number,
       default: 0
-    }
+    },
+    image:{
+      type: String,
+      trim: true,
+    },
   },
   {
     timestamps: true // Añade automáticamente fecha de creación y actualización (createdAt, updatedAt)
