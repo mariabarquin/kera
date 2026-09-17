@@ -84,8 +84,6 @@ function Home() {
       <Hero />
 
       <main>
-        <h1>Kera</h1>
-
       <ProductForm
         form={form}
         handleChange={handleChange}

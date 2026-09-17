@@ -167,3 +167,86 @@
 .product-price {
   margin-top: 10px !important;
 }
+
+/* PRODUCT FORM */
+.product-form-section {
+  padding: 100px 40px;
+  background-color: #FDFAF5;
+  border-top: 1px solid #1E1D1D;
+}
+
+.product-form {
+  max-width: 700px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.product-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 0;
+  border: none;
+  border-bottom: 1px solid #1E1D1D;
+  background: transparent;
+  color: #1E1D1D;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+.product-form input::placeholder {
+  color: #1E1D1D;
+  opacity: 0.6;
+}
+
+.product-form input:focus {
+  border-bottom-width: 2px;
+}
+
+.product-form button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 20px;
+  padding: 14px 24px;
+  border: 1px solid #1E1D1D;
+  background-color: transparent;
+  color: #1E1D1D;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product-form button:hover {
+  background-color: #1E1D1D;
+  color: #FDFAF5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .product-form-section {
+    padding: 80px 20px;
+  }
+
+  .product-form {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .product-form button {
+    width: 100%;
+  }
+
+  .products-section {
+    padding: 80px 20px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+}
