@@ -90,13 +90,13 @@ function Home() {
 
       setProducts(
         products.map((product) =>
-        product._id === result.data._id ? result.data : product
+          product._id === result.data._id ? result.data : product
         )
       );
 
       setEditingProduct(null);
     } catch (error) {
-      setError("No se han podido actualizar los cambios,");
+      setError("No se han podido actualizar los cambios.");
     }
   }
 
