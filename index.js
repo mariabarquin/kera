@@ -3,14 +3,15 @@ const express = require('express');
 const connectDB = require('./src/config/db');
 const cors = require('cors');
 
-// OJO AQUÍ: Asegúrate de que el nombre del archivo dentro de /src/routes sea exacto
-// Si tu archivo se llama productRoutes.js usa './src/routes/productRoutes'
-// Si se llama product.routes.js cambia la línea de abajo a './src/routes/product.routes'
+
 const productRoutes = require('./src/routes/productRoutes'); 
+
+const userRoutes = require('./src/routes/userRoutes');
 
 const { notFound, errorHandler } = require('./src/middlewares/errorMiddleware');
 
 const app = express();
+// Opción simple para permitir peticiones durante desarrollo:
 app.use(cors());
 
 // Conectar a MongoDB Atlas
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 
 // Rutas principales de la API
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 // Middlewares de Error
 app.use(notFound);
