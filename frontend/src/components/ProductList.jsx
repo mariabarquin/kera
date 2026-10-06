@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 function ProductList({
   products,
   handleDelete,
@@ -6,6 +8,27 @@ function ProductList({
   setEditingProduct,
   handleUpdate,
 }) {
+  const navigate = useNavigate();
+
+  // Gestión de la acción "Añadir al Carrito"
+  const handleAddToCart = (product) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+      // Si no hay sesión iniciada, redirige al login con el mensaje contextual
+      navigate("/login", {
+        state: {
+          from: "/",
+          message: "Para añadir este producto al carrito e iniciar tu pedido, por favor accede a tu cuenta.",
+        },
+      });
+      return;
+    }
+
+    // Si el usuario está autenticado, procesa la adición al carrito
+    console.log("Producto añadido al carrito:", product);
+  };
+
   return (
     <section className="products-section" id="products">
       <div className="section-heading">
@@ -94,31 +117,44 @@ function ProductList({
                 </button>
               </form>
             ) : (
-            <div>
-              <div className="product-image">
-                {product.image ? (
-                  <img src={product.image} alt={product.name} />
-                ) : (
-                  <span>KERA</span>
-                )}
+              <div>
+                <div className="product-image">
+                  {product.image ? (
+                    <img src={product.image} alt={product.name} />
+                  ) : (
+                    <span>KERA</span>
+                  )}
+                </div>
+
+                <div className="product-info">
+                  <h3>{product.name}</h3>
+                  <p>{product.description}</p>
+                  <p className="product-category">{product.category}</p>
+                  <p className="product-price">{product.price} €</p>
+
+                  {/* Botón común para todos los usuarios/visitantes */}
+                  <button 
+                    onClick={() => handleAddToCart(product)}
+                    className="add-to-cart-btn"
+                  >
+                    ADD TO CART
+                  </button>
+
+                  {/* Opciones CUD protegidas: solo se muestran si el usuario es Admin */}
+                  {handleEdit && handleDelete && (
+                    <div className="admin-actions" style={{ marginTop: "0.5rem" }}>
+                      <button onClick={() => handleEdit(product._id)}>
+                        EDIT
+                      </button>
+
+                      <button onClick={() => handleDelete(product._id)}>
+                        DELETE
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-
-              <div className="product-info">
-                <h3>{product.name}</h3>
-                <p>{product.description}</p>
-                <p className="product-category">{product.category}</p>
-                <p className="product-price">{product.price} €</p>
-
-                <button onClick={() => handleEdit(product._id)}>
-                  EDIT
-                </button>
-
-                <button onClick={() => handleDelete(product._id)}>
-                  DELETE
-                </button>
-              </div>
-            </div>
-          )}
+            )}
           </article>
         ))}
       </div>
