@@ -14,43 +14,52 @@ export default function Login() {
     try {
       const data = await loginUser({ email, password });
       localStorage.setItem('user', JSON.stringify(data.user));
-      alert('¡Bienvenido ' + data.user.name + '!');
-      navigate('/'); // Redirige a la página principal
+      navigate('/');
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '40px auto', padding: '20px' }}>
-      <h2>Iniciar Sesión</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '10px' }}>
-          <input 
-            type="email" 
-            placeholder="Email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-            style={{ width: '100%', padding: '8px' }}
-          />
-        </div>
-        <div style={{ marginBottom: '10px' }}>
-          <input 
-            type="password" 
-            placeholder="Contraseña" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-            style={{ width: '100%', padding: '8px' }}
-          />
-        </div>
-        <button type="submit" style={{ width: '100%', padding: '10px' }}>Entrar</button>
-      </form>
-      <p style={{ marginTop: '15px' }}>
-        ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
-      </p>
+    <div className="auth-wrapper">
+      <div className="auth-box">
+        <h1 className="auth-title">Acceso</h1>
+        <p className="auth-sub">Inicia sesión en tu cuenta de KERA.</p>
+
+        {error && <div className="auth-error">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="kera-field">
+            <label htmlFor="email">Email</label>
+            <input 
+              id="email"
+              type="email" 
+              className="kera-input"
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
+          </div>
+
+          <div className="kera-field">
+            <label htmlFor="password">Contraseña</label>
+            <input 
+              id="password"
+              type="password" 
+              className="kera-input"
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+          </div>
+
+          <button type="submit" className="kera-btn">Iniciar Sesión</button>
+        </form>
+
+        <p className="auth-switch">
+          ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
+        </p>
+      </div>
     </div>
   );
 }

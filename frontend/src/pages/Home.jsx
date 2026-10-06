@@ -8,7 +8,6 @@ import {
 import ProductList from "../components/ProductList";
 import ProductForm from "../components/ProductForm";
 import "../styles/kera.css";
-import Header from "../components/Header";
 import Hero from "../components/Hero";
 
 function Home() {
@@ -101,7 +100,6 @@ function Home() {
   }
 
 
-
   useEffect(() => {
     async function loadProducts() {
       try {
@@ -127,25 +125,30 @@ function Home() {
 
   return (
     <>
-      <Header />
 
       <Hero />
 
       <main>
-      <ProductForm
-        form={form}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
+        {error && (
+            <p className="auth-error" style={{ textAlign: "center", margin: "1rem 0" }}>
+              {error}
+            </p>
+          )}
 
-      <ProductList
-        products={products}
-        handleDelete={handleDelete}
-        handleEdit={handleEdit}
-        editingProduct={editingProduct}
-        setEditingProduct={setEditingProduct}
-        handleUpdate={handleUpdate}
-      />
+          <ProductForm
+            form={form}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+
+          <ProductList
+            products={products}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+            editingProduct={editingProduct}
+            setEditingProduct={setEditingProduct}
+            handleUpdate={handleUpdate}
+          />
       </main>
     </>
   );

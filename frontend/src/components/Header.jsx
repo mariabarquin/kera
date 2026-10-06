@@ -1,23 +1,52 @@
-function Header() {
-    return (
-        <header className="header">
-            <nav className="nav">
-                <div className="nav-left">
-                    <a href="#products">PRODUCTS</a>
-                    <a href="#about">ABOUT KERA</a>
-                </div>
+import { Link } from "react-router-dom";
 
-                <a href="/" className="logo">
-                KERA
-                </a>
+export default function Header() {
+  const user = JSON.parse(localStorage.getItem("user"));
 
-                <div className="nav-right">
-                    <a href="#profile">PROFILE</a>
-                    <a href="#cart">CART</a>
-                </div>
-            </nav>
-        </header>
-    );
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  };
+
+  return (
+    <header className="kera-header">
+      <nav className="kera-nav-links">
+        <Link to="/">Products</Link>
+        <Link to="/">About Kera</Link>
+      </nav>
+
+      <Link className="kera-brand" to="/">
+        kera
+      </Link>
+
+      <nav className="kera-nav-links">
+        {user ? (
+          <>
+            <span style={{ fontSize: "0.8rem", textTransform: "none" }}>
+              Hola, {user.name}
+            </span>
+            <button
+              onClick={handleLogout}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "inherit",
+                fontSize: "inherit",
+                textTransform: "uppercase",
+              }}
+            >
+              Salir
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Registro</Link>
+          </>
+        )}
+        <Link to="/cart">Cart (0)</Link>
+      </nav>
+    </header>
+  );
 }
-
-export default Header;

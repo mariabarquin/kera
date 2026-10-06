@@ -14,53 +14,64 @@ export default function Register() {
     setError('');
     try {
       await registerUser({ name, email, password });
-      alert('¡Usuario creado con éxito! Ahora puedes iniciar sesión.');
-      navigate('/login'); // Redirige al login tras un registro exitoso
+      navigate('/login');
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '40px auto', padding: '20px' }}>
-      <h2>Crear Cuenta</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '10px' }}>
-          <input 
-            type="text" 
-            placeholder="Nombre de usuario" 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
-            required 
-            style={{ width: '100%', padding: '8px' }}
-          />
-        </div>
-        <div style={{ marginBottom: '10px' }}>
-          <input 
-            type="email" 
-            placeholder="Email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-            style={{ width: '100%', padding: '8px' }}
-          />
-        </div>
-        <div style={{ marginBottom: '10px' }}>
-          <input 
-            type="password" 
-            placeholder="Contraseña" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-            style={{ width: '100%', padding: '8px' }}
-          />
-        </div>
-        <button type="submit" style={{ width: '100%', padding: '10px' }}>Registrarse</button>
-      </form>
-      <p style={{ marginTop: '15px' }}>
-        ¿Ya tienes cuenta? <Link to="/login">Inicia sesión aquí</Link>
-      </p>
+    <div className="auth-wrapper">
+      <div className="auth-box">
+        <h1 className="auth-title">Registro</h1>
+        <p className="auth-sub">Crea una cuenta en KERA.</p>
+
+        {error && <div className="auth-error">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="kera-field">
+            <label htmlFor="name">Nombre completo</label>
+            <input 
+              id="name"
+              type="text" 
+              className="kera-input"
+              value={name} 
+              onChange={(e) => setName(e.target.value)} 
+              required 
+            />
+          </div>
+
+          <div className="kera-field">
+            <label htmlFor="email">Email</label>
+            <input 
+              id="email"
+              type="email" 
+              className="kera-input"
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
+          </div>
+
+          <div className="kera-field">
+            <label htmlFor="password">Contraseña</label>
+            <input 
+              id="password"
+              type="password" 
+              className="kera-input"
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+          </div>
+
+          <button type="submit" className="kera-btn">Crear Cuenta</button>
+        </form>
+
+        <p className="auth-switch">
+          ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+        </p>
+      </div>
     </div>
   );
 }

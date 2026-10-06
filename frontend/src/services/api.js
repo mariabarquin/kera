@@ -1,7 +1,9 @@
-const API_URL = import.meta.env.VITE_API_URL;
+// Acepta VITE_API_URL o VITE_API_BASE_URL; si contiene /api al final, la limpia para no duplicar.
+const RAW_URL = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const BASE_URL = RAW_URL.replace(/\/api\/?$/, '');
 
 export async function getProducts() {
-  const response = await fetch(`${API_URL}/api/products`);
+  const response = await fetch(`${BASE_URL}/api/products`);
 
   if (!response.ok) {
     throw new Error("Error al obtener los productos");
@@ -11,7 +13,7 @@ export async function getProducts() {
 }
 
 export async function createProduct(product) {
-  const response = await fetch(`${API_URL}/api/products`, {
+  const response = await fetch(`${BASE_URL}/api/products`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +29,7 @@ export async function createProduct(product) {
 }
 
 export async function updateProduct(id, product) {
-  const response = await fetch(`${API_URL}/api/products/${id}`, {
+  const response = await fetch(`${BASE_URL}/api/products/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -43,7 +45,7 @@ export async function updateProduct(id, product) {
 }
 
 export async function deleteProduct(id) {
-  const response = await fetch(`${API_URL}/api/products/${id}`, {
+  const response = await fetch(`${BASE_URL}/api/products/${id}`, {
     method: "DELETE",
   });
 

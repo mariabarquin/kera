@@ -11,7 +11,7 @@ const userRoutes = require('./src/routes/userRoutes');
 const { notFound, errorHandler } = require('./src/middlewares/errorMiddleware');
 
 const app = express();
-// Opción simple para permitir peticiones durante desarrollo:
+// Permite solicitudes desde el puerto 5173 de React
 app.use(cors());
 
 // Conectar a MongoDB Atlas
