@@ -1,12 +1,7 @@
 {
   "entity": "Usuario",
-  "description": "Representa a los usuarios registrados de la aplicación.",
+  "description": "Representa a los usuarios registrados de la aplicación KERA.",
   "fields": [
-    {
-      "name": "id",
-      "type": "ObjectId",
-      "required": true
-    },
     {
       "name": "nombre",
       "type": "String",
@@ -15,17 +10,25 @@
     {
       "name": "apellidos",
       "type": "String",
-      "required": true
+      "required": false
     },
     {
       "name": "email",
       "type": "String",
+      "required": true,
+      "unique": true
+    },
+    {
+      "name": "password",
+      "type": "String",
       "required": true
     },
     {
-      "name": "passwordHash",
+      "name": "rol",
       "type": "String",
-      "required": true
+      "required": true,
+      "default": "customer",
+      "enum": ["customer", "admin"]
     },
     {
       "name": "telefono",
@@ -36,11 +39,6 @@
       "name": "direccion",
       "type": "String",
       "required": false
-    },
-    {
-      "name": "fechaRegistro",
-      "type": "date",
-      "required": true
     }
   ]
 }

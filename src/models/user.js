@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: [true, 'El email es obligatorio'],
-      unique: true, // No permite emails duplicados
+      unique: true,
       trim: true,
       lowercase: true
     },
@@ -20,8 +20,16 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['user', 'admin'],
-      default: 'user'
+      enum: ['customer', 'admin'],
+      default: 'customer'
+    },
+    phone: {
+      type: String,
+      trim: true
+    },
+    address: {
+      type: String,
+      trim: true
     }
   },
   {
