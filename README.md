@@ -58,7 +58,7 @@ La aplicación se ejecutará en el servidor local indicado por Vite.
 El frontend utiliza la siguiente variable de entorno para establecer la conexión con la API:
 
 ```env
-VITE_API_URL=
+VITE_API_BASE_URL=
 ```
 
 Esta variable debe configurarse en el archivo `.env` del frontend.

@@ -4,8 +4,9 @@ export default function Header() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    window.location.href = "/login";
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  window.location.href = "/login";
   };
 
   return (

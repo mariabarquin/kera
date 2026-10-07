@@ -59,7 +59,7 @@ function Home() {
         stock: "",
         image: "",
       });
-    } catch (error) {
+    } catch {
       setError("No se ha podido crear el producto");
     }
   }
@@ -69,7 +69,7 @@ function Home() {
       await deleteProduct(id);
 
       setProducts(products.filter((product) => product._id !== id));
-    } catch (error) {
+    } catch {
       setError("No se ha podido eliminar el producto.");
     }
   }
@@ -84,8 +84,6 @@ function Home() {
   setError("");
 
   try {
-    console.log("Enviando actualización de:", editingProduct);
-
     const result = await updateProduct(editingProduct._id, {
       name: editingProduct.name,
       description: editingProduct.description,
@@ -95,18 +93,17 @@ function Home() {
       image: editingProduct.image,
     });
 
-    console.log("Respuesta del servidor:", result);
-
     const updated = result.data || result;
 
     setProducts((prev) =>
-      prev.map((p) => (p._id === editingProduct._id ? updated : p))
+      prev.map((product) =>
+        product._id === editingProduct._id ? updated : product
+      )
     );
 
     setEditingProduct(null);
-  } catch (err) {
-    console.error("Error capturado en handleUpdate:", err);
-    alert(`Error al guardar: ${err.message}`);
+  } catch (error) {
+    setError(error.message);
   }
 }
 
