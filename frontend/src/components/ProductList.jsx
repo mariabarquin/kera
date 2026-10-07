@@ -40,9 +40,18 @@ function ProductList({
         {products.map((product) => (
           <article className="product-card" key={product._id}>
             {editingProduct?._id === product._id ? (
-              <form onSubmit={handleUpdate}>
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleUpdate(e); 
+                }}
+                className="inline-edit-form"
+              >
+                <div className="kera-field">
+                  <label>Nombre</label>
                 <input
                   type="text"
+                  className="kera-input"
                   value={editingProduct.name}
                   onChange={(event) =>
                     setEditingProduct({
@@ -51,9 +60,13 @@ function ProductList({
                     })
                   }
                 />
+              </div>
 
+              <div className="kera-field">
+                  <label>Descripción</label>
                 <input
                   type="text"
+                  className="kera-input"
                   value={editingProduct.description}
                   onChange={(event) =>
                     setEditingProduct({
@@ -62,9 +75,13 @@ function ProductList({
                     })
                   }
                 />
+              </div>
 
+              <div className="kera-field">
+                <label>Precio (€)</label>
                 <input
                   type="number"
+                  className="kera-input"
                   value={editingProduct.price}
                   onChange={(event) =>
                     setEditingProduct({
@@ -73,9 +90,13 @@ function ProductList({
                     })
                   }
                 />
+              </div>
 
+              <div className="kera-field">
+                <label>Categoría</label>
                 <input
                   type="text"
+                  className="kera-input"
                   value={editingProduct.category}
                   onChange={(event) =>
                     setEditingProduct({
@@ -84,9 +105,13 @@ function ProductList({
                     })
                   }
                 />
+              </div>
 
+              <div className="kera-field">
+                <label>Stock</label>
                 <input
                   type="number"
+                  className="kera-input"
                   value={editingProduct.stock}
                   onChange={(event) =>
                     setEditingProduct({
@@ -95,9 +120,13 @@ function ProductList({
                     })
                   }
                 />
+              </div>  
 
+              <div className="kera-field">
+                <label>Imagen (URL)</label>
                 <input
                   type="text"
+                  className="kera-input"
                   value={editingProduct.image || ""}
                   onChange={(event) =>
                     setEditingProduct({
@@ -106,17 +135,24 @@ function ProductList({
                     })
                   }
                 />
+              </div>
 
-                <button type="submit">SAVE</button>
+                {/* Acciones de Edición Inline */}
+              <div className="admin-actions" style={{ marginTop: "1rem" }}>
+                <button type="submit" className="admin-btn-save">
+                  SAVE
+                </button>
 
                 <button
                   type="button"
+                  className="admin-btn-cancel"
                   onClick={() => setEditingProduct(null)}
                 >
                   CANCEL
                 </button>
-              </form>
-            ) : (
+              </div>
+            </form>
+          ) : (
               <div>
                 <div className="product-image">
                   {product.image ? (
@@ -143,11 +179,17 @@ function ProductList({
                   {/* Opciones CUD protegidas: solo se muestran si el usuario es Admin */}
                   {handleEdit && handleDelete && (
                     <div className="admin-actions" style={{ marginTop: "0.5rem" }}>
-                      <button onClick={() => handleEdit(product._id)}>
+                      <button 
+                        onClick={() => handleEdit(product._id)}
+                        className="admin-btn-edit"
+                      >
                         EDIT
                       </button>
 
-                      <button onClick={() => handleDelete(product._id)}>
+                      <button 
+                        onClick={() => handleDelete(product._id)}
+                        className="admin-btn-delete"
+                      >
                         DELETE
                       </button>
                     </div>

@@ -269,3 +269,131 @@ body {
     padding: 2rem;
   }
 }
+
+/* ESTILOS DE BOTONES DE PRODUCTO */
+
+/* Botón principal: Add to Cart */
+.add-to-cart-btn {
+  width: 100%;
+  padding: 0.85rem 1.2rem;
+  background-color: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 1rem;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+/* Contenedor de acciones de administrador (Edit / Delete) */
+.admin-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* Botones secundarios de Admin (EDIT) */
+.admin-btn-edit {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  background-color: transparent;
+  color: #555555;
+  border: 1px solid #d1d1d1;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-btn-edit:hover {
+  border-color: #111111;
+  color: #111111;
+  background-color: #fcfbf9;
+}
+
+/* Botones secundarios de Admin (DELETE) */
+.admin-btn-delete {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  background-color: transparent;
+  color: #a33b3b;
+  border: 1px solid #e2b8b8;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-btn-delete:hover {
+  background-color: #fdf2f2;
+  border-color: #a33b3b;
+  color: #822727;
+}
+
+/* Formulario de edición inline */
+.inline-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.5rem;
+}
+
+.inline-edit-form label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #666;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+/* Botón SAVE (Principal dentro de edición) */
+.admin-btn-save {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  background-color: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-btn-save:hover {
+  background-color: #333333;
+}
+
+/* Botón CANCEL (Neutro dentro de edición) */
+.admin-btn-cancel {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  background-color: transparent;
+  color: #666666;
+  border: 1px solid #d1d1d1;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-btn-cancel:hover {
+  background-color: #f4f4f4;
+  color: #111111;
+}

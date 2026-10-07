@@ -1,31 +1,51 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
-// Registro de usuarios: POST /api/users/register
-router.post('/register', async (req, res) => {
+// Login de usuarios: POST /api/users/login
+router.post('/login', async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
 
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      return res.status(400).json({ message: 'El usuario ya existe' });
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ message: 'Credenciales incorrectas' });
     }
 
-    const newUser = new User({ name, email, password });
-    await newUser.save();
+    if (user.password !== password) {
+      return res.status(400).json({ message: 'Credenciales incorrectas' });
+    }
 
-    res.status(201).json({
-      message: 'Usuario registrado con éxito',
+    // Crear token JWT
+    const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role
+      },
+      process.env.JWT_SECRET || 'secreto_kera',
+      {
+        expiresIn: '1d'
+      }
+    );
+
+    res.json({
+      message: 'Inicio de sesión exitoso',
+      token,
       user: {
-        id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-        role: newUser.role
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
       }
     });
+
   } catch (error) {
-    res.status(500).json({ message: 'Error en el servidor', error: error.message });
+    res.status(500).json({
+      message: 'Error en el servidor',
+      error: error.message
+    });
   }
 });
 

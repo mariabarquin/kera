@@ -9,7 +9,7 @@ const {
 } = require('../controllers/productController');
 
 // Importamos los middlewares de autorización
-const { verifyToken, verifyAdmin } = require('../middleware/authMiddleware');
+const { verifyToken, verifyAdmin } = require('../middlewares/authMiddleware');
 
 // Rutas principales (/api/products)
 router.route('/')

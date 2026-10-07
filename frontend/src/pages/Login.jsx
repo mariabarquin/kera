@@ -6,7 +6,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,18 +18,15 @@ export default function Login() {
     setError("");
 
     try {
+      // 1. Iniciar sesión (authService guarda el token y el user en localStorage)
       const data = await loginUser({ email, password });
 
-      localStorage.setItem("user", JSON.stringify(data.user));
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
+      const userRole = data.user?.role;
 
-      // Redirección condicionada por rol
-      if (data.user?.role === "admin") {
+      // 2. Redirección condicionada por rol
+      if (userRole === "admin") {
         navigate("/");
       } else {
-        // Si viene de intentar comprar, vuelve a la tienda/carrito
         const redirectTo = location.state?.from || "/";
         navigate(redirectTo);
       }

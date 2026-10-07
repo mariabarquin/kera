@@ -16,6 +16,11 @@ function Home() {
   const [error, setError] = useState("");
   const [editingProduct, setEditingProduct] = useState(null);
 
+  // Comprobación de Rol para ocultar/mostrar controles CUD
+  const userString = localStorage.getItem("user");
+  const user = userString ? JSON.parse(userString) : null;
+  const isAdmin = user && user.role === "admin";
+
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -44,8 +49,7 @@ function Home() {
         stock: Number(form.stock),
       });
 
-
-      setProducts([...products, result.data]);
+      setProducts([...products, result.data || result]);
 
       setForm({
         name: "",
@@ -74,37 +78,43 @@ function Home() {
     const product = products.find((product) => product._id === id);
     setEditingProduct(product);
   }
+
   async function handleUpdate(event) {
-    event.preventDefault();
+  event.preventDefault();
+  setError("");
 
-    try {
-      const result = await updateProduct(editingProduct._id, {
-        name: editingProduct.name,
-        description: editingProduct.description,
-        price: Number(editingProduct.price),
-        category: editingProduct.category,
-        stock: Number(editingProduct.stock),
-        image: editingProduct.image,
-      });
+  try {
+    console.log("Enviando actualización de:", editingProduct);
 
-      setProducts(
-        products.map((product) =>
-          product._id === result.data._id ? result.data : product
-        )
-      );
+    const result = await updateProduct(editingProduct._id, {
+      name: editingProduct.name,
+      description: editingProduct.description,
+      price: Number(editingProduct.price),
+      category: editingProduct.category,
+      stock: Number(editingProduct.stock),
+      image: editingProduct.image,
+    });
 
-      setEditingProduct(null);
-    } catch (error) {
-      setError("No se han podido actualizar los cambios.");
-    }
+    console.log("Respuesta del servidor:", result);
+
+    const updated = result.data || result;
+
+    setProducts((prev) =>
+      prev.map((p) => (p._id === editingProduct._id ? updated : p))
+    );
+
+    setEditingProduct(null);
+  } catch (err) {
+    console.error("Error capturado en handleUpdate:", err);
+    alert(`Error al guardar: ${err.message}`);
   }
-
+}
 
   useEffect(() => {
     async function loadProducts() {
       try {
         const result = await getProducts();
-        setProducts(result.data);
+        setProducts(result.data || result);
       } catch (error) {
         setError("No se han podido cargar los productos.");
       } finally {
@@ -116,39 +126,38 @@ function Home() {
   }, []);
 
   if (loading) {
-    return <p>Cargando productos...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
+    return <p style={{ textAlign: "center", padding: "2rem" }}>Cargando productos...</p>;
   }
 
   return (
     <>
-
       <Hero />
 
       <main>
         {error && (
-            <p className="auth-error" style={{ textAlign: "center", margin: "1rem 0" }}>
-              {error}
-            </p>
-          )}
+          <p className="auth-error" style={{ textAlign: "center", margin: "1rem 0" }}>
+            {error}
+          </p>
+        )}
 
+        {/* 1. Solo muestra ProductForm si es ADMIN */}
+        {isAdmin && (
           <ProductForm
             form={form}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
           />
+        )}
 
-          <ProductList
-            products={products}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-            editingProduct={editingProduct}
-            setEditingProduct={setEditingProduct}
-            handleUpdate={handleUpdate}
-          />
+        {/* 2. Pasa handleDelete y handleEdit ÚNICAMENTE si es ADMIN */}
+        <ProductList
+          products={products}
+          handleDelete={isAdmin ? handleDelete : null}
+          handleEdit={isAdmin ? handleEdit : null}
+          editingProduct={editingProduct}
+          setEditingProduct={setEditingProduct}
+          handleUpdate={handleUpdate}
+        />
       </main>
     </>
   );
