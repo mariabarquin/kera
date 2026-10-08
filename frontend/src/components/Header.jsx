@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
+  // Vuelve a renderizar el Header en cada navegación (p. ej. tras el login)
+  useLocation();
+
   const user = JSON.parse(localStorage.getItem("user"));
+  const isAdmin = user?.role === "admin";
 
   const handleLogout = () => {
   localStorage.removeItem("user");
@@ -23,6 +27,8 @@ export default function Header() {
       <nav className="kera-nav-links">
         {user ? (
           <>
+            {/* Solo los administradores ven el acceso al Dashboard */}
+            {isAdmin && <Link to="/dashboard">Dashboard</Link>}
             <span style={{ fontSize: "0.8rem", textTransform: "none" }}>
               Hola, {user.name}
             </span>
