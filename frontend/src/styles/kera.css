@@ -558,3 +558,183 @@ html, body {
   border-radius: 20px;
   border: 1px solid #e4e4e7;
 }
+
+
+/* ==============
+   PÁGINA ABOUT 
+=============== */
+
+.about-page {
+  background-color: #FDFAF5;
+  color: #1E1D1D;
+  padding-bottom: 80px;
+}
+
+/* HERO PORTADA */
+.about-hero {
+  width: 100%;
+  height: 75vh;
+  min-height: 480px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-logo {
+  font-family: 'Epilogue', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(64px, 12vw, 140px);
+  letter-spacing: -0.08em;
+  color: #FDFAF5;
+  margin: 0;
+}
+
+/* 2. CITA EDITORIAL */
+.about-quote-section {
+  max-width: 900px;
+  margin: 90px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.about-quote {
+  font-family: 'Epilogue', serif;
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: #1E1D1D;
+  margin: 0;
+}
+
+/* 3. COMPOSICIÓN 3 COLUMNAS */
+.about-grid-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.grid-column img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Composición asimétrica */
+.offset-image {
+  margin-top: 40px;
+}
+
+/* Columna de texto */
+.text-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-top: 10px;
+}
+
+.text-column h2 {
+  font-family: 'Epilogue', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.text-column p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4a4a4a;
+  margin-bottom: 16px;
+}
+
+/* RRSS */
+.about-socials {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e0d8;
+}
+
+.socials-title {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.social-links a {
+  color: #1E1D1D;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s;
+}
+
+.social-links a:hover {
+  opacity: 0.6;
+}
+
+/* ====================
+   RESPONSIVE (MÓVIL)
+===================== */
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .offset-image {
+    margin-top: 0;
+  }
+
+  .grid-column img {
+    height: 350px;
+  }
+
+  .about-quote-section {
+    margin: 60px auto;
+  }
+
+  .about-grid-section {
+    padding: 0 20px;
+  }
+}
