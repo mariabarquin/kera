@@ -3,7 +3,7 @@ const RAW_URL =
   import.meta.env.VITE_API_BASE_URL ||
   'http://localhost:3000';
 
-const BASE_URL = RAW_URL.replace(/\/api\/?$/, '');
+const BASE_URL = RAW_URL.replace(/\/+$/, '').replace(/\/api\/?$/, '');
 
 const getAuthToken = () => {
   return localStorage.getItem('token');
