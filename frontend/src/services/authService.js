@@ -1,4 +1,8 @@
-const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+const API_URL = (
+  import.meta.env.VITE_API_URL ||
+  import.meta.env.VITE_API_BASE_URL ||
+  'http://localhost:3000'
+).replace(/\/+$/, '').replace(/\/api\/?$/, '');
 
 // Registrar usuario
 export const registerUser = async (userData) => {
