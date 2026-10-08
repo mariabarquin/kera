@@ -5,19 +5,14 @@ const cors = require('cors');
 
 
 const productRoutes = require('./src/routes/productRoutes'); 
-
 const userRoutes = require('./src/routes/userRoutes');
 
 const { notFound, errorHandler } = require('./src/middlewares/errorMiddleware');
 
 const app = express();
-// Permite solicitudes desde el frontend
-app.use(cors({
-  origin: [
-    'https://kera-frontent.vercel.app',
-    'http://localhost:5173'
-  ]
-}));
+
+app.use(cors());
+app.use(express.json());
 
 app.options('*', cors());
 
