@@ -11,16 +11,14 @@ const { notFound, errorHandler } = require('./src/middlewares/errorMiddleware');
 
 const app = express();
 
+// Permite solicitudes desde el frontend (también responde a los preflight OPTIONS)
 app.use(cors());
-app.use(express.json());
-
-app.options('*', cors());
-
-// Conectar a MongoDB Atlas
-connectDB();
 
 // Middleware para entender JSON
 app.use(express.json());
+
+// Conectar a MongoDB Atlas
+connectDB();
 
 // Ruta de bienvenida básica
 app.get('/', (req, res) => {
