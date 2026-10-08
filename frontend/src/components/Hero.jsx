@@ -1,6 +1,20 @@
+import React from "react";
+import heroVideo from "../assets/video_kera.mp4"; 
+
 function Hero() {
   return (
     <section className="hero">
+      <video
+        className="hero-video-bg"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={heroVideo} type="video/mp4" />
+        Tu navegador no soporta vídeos en HTML5.
+      </video>
+
       <div className="hero-content">
         <p className="hero-label">KERA — NATURAL COSMETICS</p>
 
