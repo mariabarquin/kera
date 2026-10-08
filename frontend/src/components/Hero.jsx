@@ -12,7 +12,6 @@ function Hero() {
         playsInline
       >
         <source src={heroVideo} type="video/mp4" />
-        Tu navegador no soporta vídeos en HTML5.
       </video>
 
       <div className="hero-content">
