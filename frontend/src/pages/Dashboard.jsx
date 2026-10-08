@@ -2,30 +2,29 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../services/api";
 
 function Dashboard() {
+  const [products, setProducts] = useState([]);
 
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
+  useEffect(() => {
     loadProducts();
-    }, []);
+  }, []);
 
-    const loadProducts = async () => {
+  const loadProducts = async () => {
     try {
-        const data = await getProducts();
-        setProducts(data.data);
+      const data = await getProducts();
+      setProducts(data.data);
     } catch (error) {
-        console.error("Error cargando productos:", error);
+      console.error("Error cargando productos:", error);
     }
-    };
+  };
 
-    const lowStockProducts = products.filter(
-        (product) => product.stock > 0 && product.stock <= 10
-    );
+  const lowStockProducts = products.filter(
+    (product) => product.stock > 0 && product.stock <= 10
+  );
 
-    const productsByCategory = products.reduce((categories, product) => {
-        categories[product.category] = (categories[product.category] || 0) + 1;
-        return categories;
-        }, {});
+  const productsByCategory = products.reduce((categories, product) => {
+    categories[product.category] = (categories[product.category] || 0) + 1;
+    return categories;
+  }, {});
 
   return (
     <main className="dashboard">
@@ -109,71 +108,70 @@ function Dashboard() {
 
       <section className="dashboard-section">
         <div className="section-header">
-            <div>
+          <div>
             <h2>Control de stock</h2>
             <p>Estado actual del inventario</p>
-            </div>
+          </div>
         </div>
 
         <div className="stock-list">
-            <div className="stock-row stock-header">
-                <span>Producto</span>
-                <span>Stock</span>
-                <span>Estado</span>
-            </div>
+          <div className="stock-row stock-header">
+            <span>Producto</span>
+            <span>Stock</span>
+            <span>Estado</span>
+          </div>
 
-            {products.map((product) => {
-                let statusClass = "stock-available";
-                let statusText = "Disponible";
+          {products.map((product) => {
+            let statusClass = "stock-available";
+            let statusText = "Disponible";
 
-                if (product.stock === 0) {
-                statusClass = "stock-out";
-                statusText = "Agotado";
-                } else if (product.stock <= 10) {
-                statusClass = "stock-low";
-                statusText = "Stock bajo";
-                }
+            if (product.stock === 0) {
+              statusClass = "stock-out";
+              statusText = "Agotado";
+            } else if (product.stock <= 10) {
+              statusClass = "stock-low";
+              statusText = "Stock bajo";
+            }
 
-                return (
-                <div className="stock-row" key={product._id}>
-                    <span>{product.name}</span>
-                    <span>{product.stock} unidades</span>
-                    <span className={`status ${statusClass}`}>
-                    {statusText}
-                    </span>
+            return (
+              <div className="stock-row" key={product._id}>
+                <span>{product.name}</span>
+                <span>{product.stock} unidades</span>
+                <span className={`status ${statusClass}`}>{statusText}</span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="dashboard-section">
+        <div className="section-header">
+          <div>
+            <h2>Productos por categoría</h2>
+            <p>Distribución actual del catálogo</p>
+          </div>
+        </div>
+
+        <div className="category-list">
+          {Object.entries(productsByCategory).map(([category, total]) => {
+            const percentage = products.length
+              ? Math.round((total / products.length) * 100)
+              : 0;
+
+            return (
+              <div className="category-card" key={category}>
+                <div className="category-info">
+                  <span className="category-name">{category}</span>
+                  <span className="category-count">
+                    {total} {total === 1 ? "producto" : "productos"}
+                  </span>
                 </div>
-                );
-            })}
-            </div>
-        </section>
-
-        <section className="dashboard-section">
-            <div className="section-header">
-                <div>
-                <h2>Productos por categoría</h2>
-                <p>Distribución actual del catálogo</p>
-                </div>
-            </div>
-
-            <div className="category-list">
-                {Object.entries(productsByCategory).map(([category, total]) => (
-                    <div className="category-row" key={category}>
-                    <span>{category}</span>
-
-                    <div className="category-bar">
-                        <div
-                        className="category-bar-fill"
-                        style={{
-                            width: `${(total / products.length) * 100}%`,
-                        }}
-                        />
-                    </div>
-
-                    <strong>{total}</strong>
-                    </div>
-                ))}
-            </div>
-        </section>
+                <span className="category-badge">{percentage}% del total</span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </main>
   );
 }
