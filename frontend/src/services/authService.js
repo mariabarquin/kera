@@ -7,7 +7,7 @@ const API_URL = (
 // Registrar usuario
 export const registerUser = async (userData) => {
   // Ajustado a /auth/register según la ruta del backend
-  const response = await fetch(`${API_URL}/users/register`, {
+  const response = await fetch(`${API_URL}/api/users/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData)
@@ -19,7 +19,7 @@ export const registerUser = async (userData) => {
 
 // Iniciar sesión
 export const loginUser = async (credentials) => {
-  const response = await fetch(`${API_URL}/users/login`, {
+  const response = await fetch(`${API_URL}/api/users/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials)
