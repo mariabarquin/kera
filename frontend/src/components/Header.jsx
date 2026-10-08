@@ -17,7 +17,7 @@ export default function Header() {
     <header className="kera-header">
       <nav className="kera-nav-links">
         <Link to="/">Products</Link>
-        <Link to="/">About Kera</Link>
+        <Link to="/about">About Kera</Link>
       </nav>
 
       <Link className="kera-brand" to="/">
