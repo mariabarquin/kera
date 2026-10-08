@@ -101,13 +101,14 @@ html, body {
 .hero {
   position: relative;
   width: 100%;
+  box-sizing: border-box;
   min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  padding: 80px 40px;
+  padding: 80px 20px;
 }
 
 .hero-video-bg {
@@ -127,8 +128,10 @@ html, body {
   z-index: 2;
   text-align: center;
   color: #FDFAF5;
+  width: 100%;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 auto !important; /* Fuerzo el centrado horizontal porque no se ajusta */
+  box-sizing: border-box;
 }
 
 .hero-label {
@@ -138,11 +141,12 @@ html, body {
 }
 
 .hero h1 {
-  font-size: clamp(48px, 7vw, 92px);
+  font-size: clamp(38px, 7vw, 92px);
   line-height: 0.95;
   font-weight: 400;
   letter-spacing: -0.04em;
-  margin: 0 0 30px;
+  margin: 0 auto 30px;
+  word-break: normal;
 }
 
 .hero-text {
@@ -166,6 +170,13 @@ html, body {
 .hero-button:hover {
   background-color: #1E1D1D;
   color: #FDFAF5;
+}
+
+/* Ajuste específico para móvil */
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 16px;
+  }
 }
 
 /* PRODUCTS */
