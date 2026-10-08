@@ -11,8 +11,17 @@ const userRoutes = require('./src/routes/userRoutes');
 const { notFound, errorHandler } = require('./src/middlewares/errorMiddleware');
 
 const app = express();
-// Permite solicitudes desde el puerto 5173 de React
-app.use(cors());
+// Permite solicitudes desde el frontend de producción y desde local
+app.use(cors({
+  origin: [
+    'https://kera-frontent.vercel.app',
+    'http://localhost:5173'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.options('*', cors());
 
 // Conectar a MongoDB Atlas
 connectDB();
